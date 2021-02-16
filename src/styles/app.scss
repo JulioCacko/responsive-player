@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&family=Roboto+Mono:wght@300;600;700&display=swap');
+
 * {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 h1,
 h2,
-h3{
+h3,h4{
+    font-weight: 400 ;
     color: rgb(54, 54, 54)
 }
 
 
 @import "./musica";
 @import "./player";
+@import "./biblioteca";
+@import "./nav";

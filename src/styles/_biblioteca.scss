@@ -1,0 +1,72 @@
+.Biblioteca{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    height: 100%;
+    box-shadow: 2px 2px 50px rgba(128, 128, 128, 0.75);
+    overflow: scroll;
+    transform: translateX(-100%);
+    transition: all 0.85s ease ;
+    opacity: 0;
+
+    h2{
+        padding: 2rem;
+        font-weight: 600;
+        color: #117eff;
+        svg{
+            cursor: pointer;
+            padding: 1rem 0.3rem 0rem 1.4rem;
+            color: #117eff;
+        }
+    }
+}
+
+.biblioteca-musica{
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem 1rem 2rem;
+        cursor: pointer;
+    img{
+        width: 40%;
+        box-shadow: 1px 1px 30px rgba(128, 128, 128, 0.54);
+        border-radius: 5%;
+    }
+    &:hover{
+        background: #4b9fff;
+    }
+    
+}
+.musica-description {
+    padding-left: 1rem;
+    h3{
+        font-size: 1rem;
+    }
+    h4{
+        font-size: 0.75rem;
+        }
+}
+
+*{
+    scrollbar-width: thin;
+    scrollbar-color: rgba(151, 151, 151, 0.473),transparent;
+}
+*::-webkit-scrollbar{
+    width: 5px;
+}
+*::-webkit-scrollbar-track{
+    background: transparent;
+}
+*::-webkit-scrollbar-thumb{
+    background-color:rgba(126, 126, 126, 0.45);
+    border-radius: 20px;
+    border:transparent ;
+}
+
+.selected{
+    background: #a1dcff;
+}
+.active-biblioteca{
+    transform: translateX(0%);
+    opacity: 1;
+}
