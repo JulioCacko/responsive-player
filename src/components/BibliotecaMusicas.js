@@ -1,8 +1,9 @@
 import React from "react";
 
 
+
 const BibliotecaMusicas = ({ musica, musicas, setMusicaAtual, id, audioRef, estaTocando, setMusicas }) => {
-    const songSelectHandler = () => {
+    const songSelectHandler = async () => {
         const selecionarMusica = musicas.filter((state) => state.id === id);
         setMusicaAtual(selecionarMusica[0]);
         // Adiciona Actve
@@ -21,14 +22,8 @@ const BibliotecaMusicas = ({ musica, musicas, setMusicaAtual, id, audioRef, esta
         });
         setMusicas(newSongs);
         //verifica se a musica está tocando
-        if (estaTocando) {
-            const playPromise = audioRef.current.play();
-            if (playPromise !== undefined) {
-                playPromise.then((audio) => {
-                    audioRef.current.play();
-                });
-            }
-        }
+        if (estaTocando) audioRef.current.play();
+
     };
     return (
         <div onClick={songSelectHandler} className={`biblioteca-musica ${musica.active ? "selected" : ""}`}>

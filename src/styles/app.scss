@@ -12,6 +12,12 @@ h3,h4{
     font-weight: 400 ;
     color: rgb(54, 54, 54)
 }
+.App{
+    transition: all 0.5s ease;
+}
+.library-active{
+    margin-left: 25%
+}
 
 
 @import "./musica";

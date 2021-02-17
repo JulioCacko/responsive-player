@@ -8,8 +8,7 @@
     overflow: scroll;
     transform: translateX(-100%);
     transition: all 0.85s ease ;
-    opacity: 0;
-
+    background-color: white;
     h2{
         padding: 2rem;
         font-weight: 600;
@@ -69,4 +68,15 @@
 .active-biblioteca{
     transform: translateX(0%);
     opacity: 1;
+}
+
+@media screen and (max-width: 768px){
+    .Biblioteca{
+        width: 100%;
+    }
+    .biblioteca-musica{
+        img{
+            width: 25%;
+        }
+    }
 }

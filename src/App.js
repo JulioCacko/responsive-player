@@ -20,20 +20,31 @@ function App() {
   const [infoMusica, setMusicaInfo] = useState({
     currentTime: 0,
     duration: 0,
+    animationPercetage: 0,
   });
   const [libraryStatus, setlibraryStatus] = useState(false)
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
-    setMusicaInfo({ ...infoMusica, currentTime: current, duration })
+    //Calculara a Porcetagem
+    const roundedCurrent = Math.round(current);
+    const roundedDuration = Math.round(duration);
+    const animation = Math.round((roundedCurrent / roundedDuration) * 100);
+
+    setMusicaInfo({ ...infoMusica, currentTime: current, duration, animationPercetage: animation })
   };
+  const songEndHandler = async () => {
+    let currentIndex = musicas.findIndex((musica) => musica.id === musicaAtual.id);
+    await setMusicaAtual(musicas[(currentIndex + 1) % musicas.length]);
+    if (estaTocando) audioRef.current.play();
+  }
   return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
       <Nav libraryStatus={libraryStatus} setlibraryStatus={setlibraryStatus} />
       <Musica musicaAtual={musicaAtual} />
-      <Player audioRef={audioRef} setEstaTocando={setEstaTocando} estaTocando={estaTocando} musicaAtual={musicaAtual} infoMusica={infoMusica} setMusicaInfo={setMusicaInfo} estaTocando={estaTocando} />
+      <Player setMusicas={setMusicas} setMusicaAtual={setMusicaAtual} musicas={musicas} audioRef={audioRef} setEstaTocando={setEstaTocando} estaTocando={estaTocando} musicaAtual={musicaAtual} infoMusica={infoMusica} setMusicaInfo={setMusicaInfo} estaTocando={estaTocando} />
       <Biblioteca libraryStatus={libraryStatus} audioRef={audioRef} musicas={musicas} setMusicaAtual={setMusicaAtual} estaTocando={estaTocando} setMusicas={setMusicas} />
-      <audio onTimeUpdate={timeUpdateHandler} onLoadedMetadata={timeUpdateHandler} ref={audioRef} src={musicaAtual.audio}></audio>
+      <audio onTimeUpdate={timeUpdateHandler} onLoadedMetadata={timeUpdateHandler} ref={audioRef} src={musicaAtual.audio} onEnded={songEndHandler}></audio>
     </div>
   );
 }
